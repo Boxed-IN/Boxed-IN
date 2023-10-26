@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 
+
 const port = process.env.PORT || 5100;
 app.use(express.json());
 app.use(cors());
@@ -18,8 +19,8 @@ app.listen(port, () => {
 //Endpoints
 
 // //login user
-app.get("/", userController.getUser); //done returning user
+app.get("/login", userController.getUser); //done returning user
 // user by id
-app.get("/:id", userController.getUser); // done returning user
+app.get("/login/:id", userController.getUser); // done returning user
 // //create user
-app.post("/", userController.create); 
+app.post("/create", userController.create); //done returning id and user_name
