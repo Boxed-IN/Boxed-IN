@@ -1,30 +1,23 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-export const crypter = {
+module.exports = {
     hash: hashPassword,
     check: checkPassword
 };
 
 async function hashPassword (password) {
-    let newSalt = "";
-    let newHash = "";
+    let newSalt = "1";
+    let newHash = "2";
 
-    await bcrypt.genSalt(saltRounds, function(err, salt) {
-        newSalt = salt;
-        bcrypt.hash(password, salt, function(err, hash) {
-            newHash = hash;
-        });
-    });
+    const newerSalt = await bcrypt.genSalt(saltRounds);
+    const newerHash = await bcrypt.hash(password, newerSalt);
 
-   return {hashedPassword: newHash, salt: newSalt};
+   return {hashedPassword: newerHash, salt: newerSalt};
 }
 
-async function checkPassword (password, hash) {
+async function checkPassword (password, hash, salt) {
     let bool = false;
-
-    bcrypt.compare(password, hash, function(err, result) {
-        bool == result;
-    });
+    bool = await bcrypt.compare(password, hash);
     return bool;
 }
