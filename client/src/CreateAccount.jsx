@@ -11,11 +11,25 @@ const CreateAccount = () => {
 
   const handleClick = (e) => {
     setIsSubmitted(true);
-    navigate("/");
   };
 
+  useEffect(() => {
+    const userData = {
+      user_name: usernameInput,
+      password: passwordInput,
+    };
+
+    fetch("http://localhost:5001/create", {
+      method: "POST",
+      headers: { "Content-Type": "applicataion/json" },
+      body: JSON.stringify(userData),
+    }).then((res) => {
+      res.status == 200 ? navigate("/") : window.alert(res.body);
+    });
+  }, [isSubmitted]);
+
   return (
-    <form action="/" method="POST" onSubmit={handleClick}>
+    <form action="#" onSubmit={handleClick}>
       <label htmlFor="username">Username</label>
       <input
         type="text"
