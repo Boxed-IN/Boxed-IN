@@ -1,20 +1,17 @@
-const express = require('express');
+const express = require("express");
 const userController = require("./user/user.controller");
 const app = express();
 const cors = require("cors");
 const path = require("path");
 
-
 const port = process.env.PORT || 5100;
 app.use(express.json());
 app.use(cors());
-//app.use(express.static('../client/dist'));
+// app.use(express.static("../client/dist"));
 
 app.listen(port, () => {
-    console.log(`Server is listening on port ${port}.`)
+  console.log(`Server is listening on port ${port}.`);
 });
-
-
 
 //Endpoints
 
