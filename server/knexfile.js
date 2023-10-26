@@ -1,19 +1,18 @@
 // Update with your config settings.
 
-require("dotenv").config({ path: "./.env.local"});
+require("dotenv").config({ path: "./.env.local" });
 
- const DB_USER = process.env.DB_USER;
- const DB_NAME = "notes_app";
- const DB_HOST = "127.0.0.1";
- const DB_PORT = "5432";
- const DB_URL = process.env.DATABASE_URL
- const DB_PASSWORD = process.env.DB_PASSWORD; 
+const DB_USER = process.env.DB_USER;
+const DB_NAME = "poster_game";
+const DB_HOST = "127.0.0.1";
+const DB_PORT = "5432";
+const DB_URL = process.env.DATABASE_URL;
+const DB_PASSWORD = process.env.DB_PASSWORD || "";
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
-
   client: "postgresql",
   connection: DB_URL || {
     host: DB_HOST || "127.0.0.1",
