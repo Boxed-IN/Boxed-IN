@@ -69,7 +69,8 @@ module.exports = {
       user[0].hashed_password,
       user[0].salt
     );
-    if (validUser) {
+    console.log(validUser);
+    if (validUser === true) {
       return true;
     } else {
       return false

@@ -30,9 +30,10 @@ app.listen(port, () => {
 //Endpoints
 
 // //login user
-app.post('/login', express.urlencoded({ extended: false }), function (req, res) {
+app.post('/login', express.urlencoded({ extended: false }), async function (req, res) {
     // login logic to validate req.body.user and req.body.pass
-    if(userController.login(req.body)){
+    const loggedIn = await userController.login(req.body);
+    if(loggedIn === true){
         // regenerate the session, which is good practice to help
         // guard against forms of session fixation
         req.session.regenerate(function (err) {
@@ -47,7 +48,7 @@ app.post('/login', express.urlencoded({ extended: false }), function (req, res) 
             // load does not happen before session is saved
             req.session.save(function (err) {
             if (err) return next(err)
-            res.redirect('/new')
+            res.redirect('/')
             })
         })
     }
