@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Game } from "./Game";
 
 const UserHome = ({ user }) => {
   const [startGame, setStartGame] = useState(false);
-  const navigate = useNavigate();
   const handleClick = () => {
     window.location.reload();
   };
