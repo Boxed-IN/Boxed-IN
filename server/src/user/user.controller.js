@@ -72,7 +72,7 @@ module.exports = {
     if (validUser) {
       return true;
     } else {
-      return false
+      return false;
     }
-  }
+  },
 };
