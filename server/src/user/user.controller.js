@@ -38,7 +38,6 @@ module.exports = {
       }
     }
   },
-
   async create(req, res) {
     try {
       let user = req.body;
@@ -59,21 +58,6 @@ module.exports = {
       }
     } catch (err) {
       res.status(500).send("Server problem.");
-    }
-  },
-
-  async login(data) {
-    const user = await userModel.checkUser(data.user_name);
-    const validUser = await crypter.check(
-      data.password,
-      user[0].hashed_password,
-      user[0].salt
-    );
-    console.log(validUser);
-    if (validUser === true) {
-      return true;
-    } else {
-      return false;
     }
   },
 };
