@@ -5,7 +5,8 @@ const Homepage = () => {
   const usernameInput = useRef("");
   const passwordInput = useRef("");
 
-  const handleRequest = () => {
+  const handleRequest = (e) => {
+    e.preventDefault();
     const userData = {
       user_name: usernameInput.current.value,
       password: passwordInput.current.value,
