@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import Homepage from "./Homepage";
 import CreateAccount from "./CreateAccount";
-import UserHome from "./Userhome";
 
 const App = () => {
   return (
