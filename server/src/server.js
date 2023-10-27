@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 var escapeHtml = require("escape-html");
 var session = require("express-session");
+require("dotenv").config({ path: "./.env.local" }); //Only for debugging
 
 const port = process.env.PORT || 5100;
 app.use(express.json());
@@ -36,6 +37,7 @@ app.post(
   express.urlencoded({ extended: false }),
   async function (req, res) {
     // login logic to validate req.body.user and req.body.pass
+    console.log(process.env.DATABASE_URL);
     const loggedIn = await userController.login(req.body);
     console.log("This is the result of the login: " + loggedIn);
     if (loggedIn === true) {
