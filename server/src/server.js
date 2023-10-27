@@ -37,6 +37,7 @@ app.post(
   async function (req, res) {
     // login logic to validate req.body.user and req.body.pass
     const loggedIn = await userController.login(req.body);
+    console.log("This is the result of the login: " + loggedIn);
     if (loggedIn === true) {
       // regenerate the session, which is good practice to help
       // guard against forms of session fixation
@@ -45,12 +46,12 @@ app.post(
 
         // store user information in session, typically a user id
         req.session.user = req.body.user_name;
-
+        console.log("This is the user logging in: " + req.session.user);
         // save the session before redirection to ensure page
         // load does not happen before session is saved
         req.session.save(function (err) {
           if (err) return next(err);
-          res.redirect("/");
+          res.sendStatus(200);
         });
       });
     } else {
