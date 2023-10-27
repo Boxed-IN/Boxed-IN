@@ -3,8 +3,8 @@ import React from "react";
 import {useState, useEffect } from "react";
 
 export const Timer = (props) => {
-    const {className} = props;
-    const [timer, setTimer] = useState(180);
+    const {className, time_limit} = props;
+    const [timer, setTimer] = useState(time_limit);
 
     useEffect(() => {
         if (timer <= 0) return;

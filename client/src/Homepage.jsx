@@ -28,7 +28,7 @@ const Homepage = () => {
   return isLoggedIn ? (
     <>
     <h1>Welcome</h1>
-    <Timer className="timer"></Timer>
+    <Timer className="timer" time_limit={30}></Timer>
     </>
   ) : (
     <>
