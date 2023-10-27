@@ -3,8 +3,15 @@ const userController = require("./user/user.controller");
 const app = express();
 const cors = require("cors");
 const path = require("path");
-var escapeHtml = require("escape-html");
-var session = require("express-session");
+const knex = require("./knex");
+var escapeHtml = require('escape-html');
+var session = require('express-session');
+const KnexSessionStore = require('connect-session-knex')(session);
+
+const store = new KnexSessionStore({
+    knex,
+    tablename: "sessions"
+});
 
 const port = process.env.PORT || 5100;
 app.use(express.json());
@@ -16,8 +23,11 @@ app.use(
     secret: "keyboard dog",
     resave: false,
     saveUninitialized: true,
-  })
-);
+    cookie: {
+        maxAge: 30000, // 30 seconds for testing
+      },
+      store
+  }))
 
 function isAuthenticated(req, res, next) {
   if (req.session.user) next();
