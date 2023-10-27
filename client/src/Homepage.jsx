@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
-import {Timer} from "./timer"
+import { createContext, useRef, useState } from "react";
+import UserHome from "./Userhome";
 
 const Homepage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   const usernameInput = useRef("");
   const passwordInput = useRef("");
 
@@ -20,15 +20,14 @@ const Homepage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
-    }).then((res) => 
+    }).then((res) =>
       res.status == 200 ? setIsLoggedIn(true) : console.log(res.status)
     );
   };
 
   return isLoggedIn ? (
     <>
-    <h1>Welcome</h1>
-    <Timer className="timer" time_limit={30}></Timer>
+      <UserHome user={usernameInput.current.value} />
     </>
   ) : (
     <>
