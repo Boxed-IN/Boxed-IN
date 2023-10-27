@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import {Timer} from "./timer"
+import {Game} from "./Game"
 
 const Homepage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,7 +28,7 @@ const Homepage = () => {
   return isLoggedIn ? (
     <>
     <h1>Welcome</h1>
-    <Timer className="timer" time_limit={30}></Timer>
+    <Game className="Game"></Game>
     </>
   ) : (
     <>
