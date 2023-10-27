@@ -41,20 +41,23 @@ module.exports = {
 
   async create(req, res) {
     try {
+      console.log("test1");
       let user = req.body;
       let checkUser = await userModel.checkUser(user.user_name);
+      console.log("test2");
       if (checkUser[0]) {
+        console.log("test3");
         return res.status(404).send("Username already exist");
       } else {
         let hashedData = await crypter.hash(user.password);
-
+        console.log("test4");
         let obj = {
           user_name: user.user_name,
           hashed_password: hashedData.hashedPassword,
           salt: hashedData.salt,
         };
         userCreated = await userModel.create(obj);
-
+        console.log("test5");
         res.status(200).send(userCreated);
       }
     } catch (err) {

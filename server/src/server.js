@@ -4,13 +4,13 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const knex = require("./knex");
-var escapeHtml = require('escape-html');
-var session = require('express-session');
-const KnexSessionStore = require('connect-session-knex')(session);
+const escapeHtml = require("escape-html");
+const session = require("express-session");
+const KnexSessionStore = require("connect-session-knex")(session);
 
 const store = new KnexSessionStore({
-    knex,
-    tablename: "sessions"
+  knex,
+  tablename: "sessions",
 });
 
 const port = process.env.PORT || 5100;
@@ -24,10 +24,11 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 30000, // 30 seconds for testing
-      },
-      store
-  }))
+      maxAge: 30000, // 30 seconds for testing
+    },
+    store,
+  })
+);
 
 function isAuthenticated(req, res, next) {
   if (req.session.user) next();
@@ -35,7 +36,7 @@ function isAuthenticated(req, res, next) {
 }
 
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}.`);
+  console.log(`Server is listening on port ${port}.`, process.env.DATABASE_URL);
 });
 
 //Endpoints
