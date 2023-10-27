@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import UserHome from "./Userhome";
+import UserHome from "./UserHome";
 
 const Homepage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
