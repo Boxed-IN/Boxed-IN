@@ -31,7 +31,7 @@ const Postgame = ({ score }) => {
         {leaderboard.map((user) => {
           return (
             <li>
-              {user.user_name}: {user.score}
+              {user.user}: {user.score}
             </li>
           );
         })}
