@@ -9,6 +9,7 @@ export const Game = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(180);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [movies, setMovies] = useState([{ poster_link: poster }]);
   const [isGameOver, setIsGameOver] = useState(false);
   const startScale = 10;
@@ -34,6 +35,10 @@ export const Game = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+      }).then(() => {
+        fetch("/leaderboard")
+          .then((res) => res.json())
+          .then((data) => setLeaderboard(data));
       });
       setIsGameOver(true);
       return;
@@ -93,7 +98,7 @@ export const Game = () => {
   }
 
   return isGameOver ? (
-    <Postgame score={score} />
+    <Postgame score={score} leaderboard={leaderboard} />
   ) : (
     <>
       <img className="game-poster" src={movies[0].poster_link} ></img>
@@ -106,15 +111,11 @@ export const Game = () => {
         name="answer"
         ref={answerInput}
         onKeyDown={(e) => {
-          console.log(e.key);
           if (e.key === "Enter") {
-            console.log(answerInput.current.value + " vs " + movies[0].title);
-            if (answerInput.current.value == movies[0].title) {
-              console.log("answered: " + movies[0].title);
+            if (answerInput.current.value.toLowerCase() == movies[0].title.toLowerCase()) {
               setScore((prevScore) => prevScore + 1);
               handleSwapPoster()
             } else {
-              console.log("failed: " + movies[0].title);
               setScore((prevScore) => prevScore - 1);
             }
           }
