@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import UserHome from "./UserHome";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const usernameInput = useRef("");
   const passwordInput = useRef("");
+
+  const navigate = useNavigate();
 
   const handleRequest = (e) => {
     e.preventDefault();
@@ -21,15 +21,11 @@ const Homepage = () => {
       },
       body: JSON.stringify(userData),
     }).then((res) =>
-      res.status == 200 ? setIsLoggedIn(true) : console.log(res.status)
+      res.status == 200 ? navigate("/home") : console.log(res.status)
     );
   };
 
-  return isLoggedIn ? (
-    <>
-      <UserHome user={usernameInput.current.value} />
-    </>
-  ) : (
+  return (
     <>
       <form action="#" onSubmit={handleRequest}>
         <label htmlFor="username">Username</label>

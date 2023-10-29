@@ -16,7 +16,7 @@ const CreateAccount = () => {
       password: passwordInput.current.value,
     };
 
-    fetch("http://localhost:5100/create", {
+    fetch("/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
