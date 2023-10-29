@@ -7,7 +7,7 @@ const UserHome = ({ user }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    window.location.reload();
+    navigate("/");
   };
 
   return (

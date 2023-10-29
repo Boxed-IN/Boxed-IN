@@ -7,10 +7,30 @@ import Postgame from "./Postgame";
 export const Game = () => {
   const [answer, setAnswer] = useState("Grime");
   const [score, setScore] = useState(0);
+  const [timer, setTimer] = useState(30);
   const [movies, setMovies] = useState([{ poster_link: poster }]);
   const [isGameOver, setIsGameOver] = useState(false);
 
   const answerInput = useRef("");
+
+  useEffect(() => {
+    if (timer <= 0) {
+      fetch("/score", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(score),
+      });
+      setIsGameOver(true);
+    }
+    const timeout = setTimeout(() => {
+      setTimer((prevTimer) => prevTimer - 1);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [timer]);
+
+  useEffect(() => {
+    handleGetPosters();
+  }, []);
 
   async function handleGetPosters() {
     let result = await fetch("/movieInfo");
@@ -20,21 +40,13 @@ export const Game = () => {
     console.log(movies);
   }
 
-  useEffect(() => {
-    handleGetPosters();
-  }, []);
-
   return isGameOver ? (
     <Postgame />
   ) : (
     <>
       <img src={movies[0].poster_link}></img>
       <p>Score: {score} </p>
-      <Timer
-        className="timer"
-        time_limit={30}
-        setIsGameOver={setIsGameOver}
-      ></Timer>
+      <h1 className={className}> Timer: {timer} </h1>
       <input
         type="text"
         name="answer"
