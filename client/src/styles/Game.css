@@ -7,17 +7,20 @@
 
 .game-poster {
     margin-top: 10px;
-    width: 45vw;
-    height: 70vh;
+    width: 320px;
+    height: 600px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
 }
 
 .game-score {
+    margin-top: 10px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     font-family: "JetBrains Mono",monospace;
+    width: 600px;
+    height: 140px;
     color: rgb(208, 192, 165);
     background-color: rgb(96, 98, 97);
     border-radius: 10px;

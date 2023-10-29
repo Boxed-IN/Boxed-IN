@@ -31,7 +31,7 @@ const CreateAccount = () => {
   return (
     <>
       <h1 className="title-createacc" >Boxed IN</h1>
-    <form className="form-createacc" action="#" onSubmit={handleRequest}>
+      <form className="form-createacc" action="#" onSubmit={handleRequest}>
       <label className="label-createacc" htmlFor="username">Username</label>
       <input className="input-createacc" type="text" name="username" ref={usernameInput} />
       <label className="label-createacc" htmlFor="password">Password</label>
@@ -40,7 +40,6 @@ const CreateAccount = () => {
       <input className="input-createacc" type="password" name="repassword" ref={reEnterPasswordInput} />
       <button className="button-createacc" >Create Account</button>
     </form>
-    {/* <div className="space-invader"> </div> */}
     </>
   );
 };

@@ -57,10 +57,12 @@ export const Game = () => {
     <Postgame score={score} />
   ) : (
     <>
-      <img src={movies[0].poster_link}></img>
-      <p>Score: {score} </p>
-      <h1> Timer: {timer} </h1>
+      <img className="game-poster" src={movies[0].poster_link}></img>
+      <div className="game-score" >
+      <p className="score" >Score: {score} </p>
+      <h1 className="timer" > Timer: {timer} </h1>
       <input
+        className="game-input"
         type="text"
         name="answer"
         ref={answerInput}
@@ -78,6 +80,7 @@ export const Game = () => {
           }
         }}
       />
+      </div>
     </>
   );
 };
