@@ -23,7 +23,7 @@ const CreateAccount = () => {
       },
       body: JSON.stringify(userData),
     }).then((res) => {
-      res.status == 200 ? navigate("/") : console.log(res.status);
+      res.status == 200 ? navigate("/home") : console.log(res.status);
     });
   };
 
