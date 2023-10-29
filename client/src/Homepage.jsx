@@ -1,30 +1,41 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import UserHome from "./UserHome";
 
 const Homepage = () => {
-  const [usernameInput, setUsernameInput] = useState("");
-  const [passwordInput, setPasswordInput] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  return (
+  const usernameInput = useRef("");
+  const passwordInput = useRef("");
+
+  const handleRequest = (e) => {
+    e.preventDefault();
+    const userData = {
+      user_name: usernameInput.current.value,
+      password: passwordInput.current.value,
+    };
+
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    }).then((res) =>
+      res.status == 200 ? setIsLoggedIn(true) : console.log(res.status)
+    );
+  };
+
+  return isLoggedIn ? (
     <>
-      <form action="/" method="GET">
+      <UserHome user={usernameInput.current.value} />
+    </>
+  ) : (
+    <>
+      <form action="#" onSubmit={handleRequest}>
         <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={usernameInput}
-          onChange={(e) => {
-            setUsernameInput(e.target.value);
-          }}
-        />
+        <input type="text" name="username" ref={usernameInput} />
         <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={passwordInput}
-          onChange={(e) => {
-            setPasswordInput(e.target.value);
-          }}
-        />
+        <input type="password" name="password" ref={passwordInput} />
         <button>Login</button>
       </form>
       <a href="/new">Create An Account</a>

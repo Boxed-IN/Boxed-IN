@@ -1,5 +1,6 @@
 const userModel = require("./user.model");
 const crypter = require("../authentication");
+require("dotenv").config({ path: "./.env.local" }); //Only for debugging
 
 module.exports = {
   async getUser(req, res) {
@@ -40,6 +41,7 @@ module.exports = {
   },
   async create(req, res) {
     try {
+      console.log(process.env.DATABASE_URL);
       let user = req.body;
       let checkUser = await userModel.checkUser(user.user_name);
       if (checkUser[0]) {
@@ -58,6 +60,20 @@ module.exports = {
       }
     } catch (err) {
       res.status(500).send("Server problem.");
+    }
+  },
+
+  async login(data) {
+    const user = await userModel.checkUser(data.user_name);
+    const validUser = await crypter.check(
+      data.password,
+      user[0].hashed_password,
+      user[0].salt
+    );
+    if (validUser === true) {
+      return true;
+    } else {
+      return false;
     }
   },
 };
