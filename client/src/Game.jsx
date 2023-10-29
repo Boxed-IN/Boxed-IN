@@ -1,4 +1,8 @@
 import React from "react";
+import {useState, useRef} from "react";
+import {Timer} from "./timer";
+import poster from "../posters/poster01.jpeg";
+import "./styles/Game.css";
 import { useState, useRef, useEffect } from "react";
 import poster from "../posters/PlaceholderPoster.png";
 import Postgame from "./Postgame";

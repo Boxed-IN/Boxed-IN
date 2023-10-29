@@ -6,11 +6,13 @@ import {
 } from "react-router-dom";
 import Homepage from "./Homepage";
 import CreateAccount from "./CreateAccount";
+import "./styles/App.css";
 import UserHome from "./UserHome";
 import { Game } from "./Game";
 
 const App = () => {
   return (
+    <div className="container" >
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -20,6 +22,7 @@ const App = () => {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
+    </div>
   );
 };
 
