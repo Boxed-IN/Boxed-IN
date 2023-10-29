@@ -9,6 +9,7 @@ export const Game = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(30);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [movies, setMovies] = useState([{ poster_link: poster }]);
   const [isGameOver, setIsGameOver] = useState(false);
 
@@ -30,6 +31,10 @@ export const Game = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+      }).then(() => {
+        fetch("/leaderboard")
+          .then((res) => res.json())
+          .then((data) => setLeaderboard(data));
       });
       setIsGameOver(true);
       return;
@@ -54,32 +59,32 @@ export const Game = () => {
   }
 
   return isGameOver ? (
-    <Postgame score={score} />
+    <Postgame score={score} leaderboard={leaderboard} />
   ) : (
     <>
       <img className="game-poster" src={movies[0].poster_link}></img>
-      <div className="game-score" >
-      <p className="score" >Score: {score} </p>
-      <h1 className="timer" > Timer: {timer} </h1>
-      <input
-        className="game-input"
-        type="text"
-        name="answer"
-        ref={answerInput}
-        onKeyDown={(e) => {
-          console.log(e.key);
-          if (e.key === "Enter") {
-            console.log(answerInput.current.value + "vs" + answer);
-            if (answerInput.current.value == answer) {
-              console.log("answered");
-              setScore((prevScore) => prevScore + 1);
-            } else {
-              console.log("failed");
-              setScore((prevScore) => prevScore - 1);
+      <div className="game-score">
+        <p className="score">Score: {score} </p>
+        <h1 className="timer"> Timer: {timer} </h1>
+        <input
+          className="game-input"
+          type="text"
+          name="answer"
+          ref={answerInput}
+          onKeyDown={(e) => {
+            console.log(e.key);
+            if (e.key === "Enter") {
+              console.log(answerInput.current.value + "vs" + answer);
+              if (answerInput.current.value == answer) {
+                console.log("answered");
+                setScore((prevScore) => prevScore + 1);
+              } else {
+                console.log("failed");
+                setScore((prevScore) => prevScore - 1);
+              }
             }
-          }
-        }}
-      />
+          }}
+        />
       </div>
     </>
   );
