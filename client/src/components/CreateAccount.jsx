@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles/CreateAccount.css";
+import "../styles/CreateAccount.css";
 
 const CreateAccount = () => {
   const usernameInput = useRef("");
@@ -24,7 +24,7 @@ const CreateAccount = () => {
       },
       body: JSON.stringify(userData),
     }).then((res) => {
-      res.status == 200 ? navigate("/") : console.log(res.status);
+      res.status === 200 && navigate("/");
     });
   };
 

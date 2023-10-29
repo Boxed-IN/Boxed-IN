@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles/Homepage.css";
+import "../styles/Homepage.css";
 
 const Homepage = () => {
   const usernameInput = useRef("");
@@ -21,9 +21,7 @@ const Homepage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
-    }).then((res) =>
-      res.status == 200 ? navigate("/home") : console.log(res.status)
-    );
+    }).then((res) => res.status === 200 && navigate("/home"));
   };
 
   return (
