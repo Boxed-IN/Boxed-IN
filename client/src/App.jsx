@@ -6,9 +6,11 @@ import {
 } from "react-router-dom";
 import Homepage from "./Homepage";
 import CreateAccount from "./CreateAccount";
+import "./styles/App.css";
 
 const App = () => {
   return (
+    <div className="container" >
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -16,6 +18,7 @@ const App = () => {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
+    </div>
   );
 };
 

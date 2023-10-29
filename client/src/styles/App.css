@@ -1,0 +1,12 @@
+
+.container {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(232, 223, 207);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+  }

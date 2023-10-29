@@ -1,0 +1,145 @@
+
+  .form-login {
+    padding: 25px;
+    margin: 25px;
+    background-color: rgb(96, 98, 97);
+    display: flex;
+    flex-direction: column;
+    font-family: "JetBrains Mono",monospace;
+    gap: 7px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 10px;
+  }
+
+  .link-newacc {
+    text-decoration: none;
+    font-family: "JetBrains Mono",monospace;
+    color: rgb(108, 104, 96);
+    transition: transform 0.3s; 
+  }
+  .link-newacc:hover {
+    transform: translateY(-4px); 
+}
+
+  .space-invader {
+    /* Modify size here: */
+    --block-size: 5px;
+  
+    box-shadow: 0 0 0 var(--block-size) #333,
+    0 var(--block-size) 0 var(--block-size) #333,
+    calc(var(--block-size) * -2.5) calc(var(--block-size) * 1.5) 0 calc(var(--block-size) * .5) #333,
+    calc(var(--block-size) * 2.5) calc(var(--block-size) * 1.5) 0 calc(var(--block-size) * .5) #333,
+    calc(var(--block-size) * -3) calc(var(--block-size) * -3) 0 0 #333,
+    calc(var(--block-size) * 3) calc(var(--block-size) * -3) 0 0 #333,
+    calc(var(--block-size) * -2) calc(var(--block-size) * -2) 0 0 #333,
+    calc(var(--block-size) * 2) calc(var(--block-size) * -2) 0 0 #333,
+    calc(var(--block-size) * -3) calc(var(--block-size) * -1) 0 0 #333,
+    calc(var(--block-size) * -2) calc(var(--block-size) * -1) 0 0 #333,
+    calc(var(--block-size) * 2) calc(var(--block-size) * -1) 0 0 #333,
+    calc(var(--block-size) * 3) calc(var(--block-size) * -1) 0 0 #333,
+    calc(var(--block-size) * -4) 0 0 0 #333,
+    calc(var(--block-size) * -3) 0 0 0 #333,
+    calc(var(--block-size) * 3) 0 0 0 #333,
+    calc(var(--block-size) * 4) 0 0 0 #333,
+    calc(var(--block-size) * -5) var(--block-size) 0 0 #333,
+    calc(var(--block-size) * -4) var(--block-size) 0 0 #333,
+    calc(var(--block-size) * 4) var(--block-size) 0 0 #333,
+    calc(var(--block-size) * 5) var(--block-size) 0 0 #333,
+    calc(var(--block-size) * -5) calc(var(--block-size) * 2) 0 0 #333,
+    calc(var(--block-size) * 5) calc(var(--block-size) * 2) 0 0 #333,
+    calc(var(--block-size) * -5) calc(var(--block-size) * 3) 0 0 #333,
+    calc(var(--block-size) * -3) calc(var(--block-size) * 3) 0 0 #333,
+    calc(var(--block-size) * 3) calc(var(--block-size) * 3) 0 0 #333,
+    calc(var(--block-size) * 5) calc(var(--block-size) * 3) 0 0 #333,
+    calc(var(--block-size) * -2) calc(var(--block-size) * 4) 0 0 #333,
+    calc(var(--block-size) * -1) calc(var(--block-size) * 4) 0 0 #333,
+    var(--block-size) calc(var(--block-size) * 4) 0 0 #333,
+    calc(var(--block-size) * 2) calc(var(--block-size) * 4) 0 0 #333;
+    background: #333;
+    width: var(--block-size);
+    height: var(--block-size);
+    overflow: hidden;
+    
+  }
+
+.newacc {
+    margin-top: 10px;
+    display: flex;
+    gap: 40px;
+}
+
+.button-login {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: rgb(108, 104, 96);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+
+}
+
+.button-login:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-login:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-login:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.label-login {
+    color: rgb(208, 192, 165)
+}
+.input-login {
+    border-radius: 7px;
+    height: 25px;
+    background-color: rgb(108, 104, 96);
+    transition: all 0.3s; 
+    outline: none;
+}
+
+.input-login:focus {
+    transform: scale(1.02); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px);
+}
+
+.container-login {
+    display: flex ;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title-login {
+    font-family: "JetBrains Mono",monospace;
+    color: rgb(73, 76, 74);
+    margin-top: 80px;
+}
+

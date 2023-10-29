@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import UserHome from "./UserHome";
+import "./styles/Homepage.css";
 
 const Homepage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,14 +32,20 @@ const Homepage = () => {
     </>
   ) : (
     <>
-      <form action="#" onSubmit={handleRequest}>
-        <label htmlFor="username">Username</label>
-        <input type="text" name="username" ref={usernameInput} />
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" ref={passwordInput} />
-        <button>Login</button>
+      <h1 className="title-login" >Boxed IN</h1>
+      <div className="container-login" >
+      <form className="form-login" action="#" onSubmit={handleRequest}>
+        <label className="label-login" htmlFor="username">Username</label>
+        <input className="input-login" type="text" name="username" ref={usernameInput} />
+        <label className="label-login" htmlFor="password">Password</label>
+        <input className="input-login" type="password" name="password" ref={passwordInput} />
+        <button className="button-login" >Login</button>
       </form>
-      <a href="/new">Create An Account</a>
+      <div className="newacc" >
+      <div className="space-invader"> </div>
+      <a className="link-newacc" href="/new">Create An Account</a>
+      </div>
+      </div>
     </>
   );
 };
