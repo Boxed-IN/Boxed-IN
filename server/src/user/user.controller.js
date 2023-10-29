@@ -41,7 +41,6 @@ module.exports = {
   },
   async create(req, res) {
     try {
-      console.log(process.env.DATABASE_URL);
       let user = req.body;
       let checkUser = await userModel.checkUser(user.user_name);
       if (checkUser[0]) {
@@ -65,7 +64,7 @@ module.exports = {
 
   async login(data) {
     const user = await userModel.checkUser(data.user_name);
-    if(user[0] == undefined) return false;
+    if (user[0] == undefined) return false;
     const validUser = await crypter.check(
       data.password,
       user[0].hashed_password,
