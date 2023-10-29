@@ -82,6 +82,13 @@ app.get("/login/:id", userController.getUser); // done returning user
 // //create user
 app.post("/create", userController.create); //done returning id and user_name
 
+app.get("/movieInfo", isAuthenticated, async (req, res, next) => {
+ let data = await movieController.getAllMovies();
+ res.status(200).send(data);
+}, (req, res, next) => {
+  res.status(400).send("ERROR: Not logged in");
+});
+
 //serving static html for every path
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
