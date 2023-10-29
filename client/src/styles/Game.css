@@ -1,0 +1,64 @@
+.game-container {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(232, 223, 207);
+    width: 50vw;
+}
+
+.game-poster {
+    margin-top: 10px;
+    width: 320px;
+    height: 600px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+   
+   --zoom: 10;
+   --x: 50%;
+   --y: 50%;
+   transform: scale(var(--zoom));
+   transform-origin: var(--x) var(--y);
+  clip-path: inset(
+    calc((1 - 1/var(--zoom)) * (var(--y)))
+    calc((1 - 1/var(--zoom)) * (100% - var(--x)))
+    calc((1 - 1/var(--zoom)) * (100% - var(--y)))
+    calc((1 - 1/var(--zoom)) * (var(--x)))
+  );
+      
+}
+
+.game-score {
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    font-family: "JetBrains Mono",monospace;
+    width: 600px;
+    height: 140px;
+    color: rgb(208, 192, 165);
+    background-color: rgb(96, 98, 97);
+    border-radius: 10px;
+    gap: 7px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.score {
+    padding: 0;
+    margin: 0;
+}
+.timer {
+    padding: 0;
+    margin: 0;
+}
+.game-input {
+    border-radius: 7px;
+    height: 25px;
+    background-color: rgb(108, 104, 96);
+    transition: all 0.3s; 
+    outline: none;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.game-input:focus {
+    transform: scale(1.02); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px);
+}

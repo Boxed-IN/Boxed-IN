@@ -1,6 +1,7 @@
 const express = require("express");
 const userController = require("./user/user.controller");
 const movieController = require("./movie/movie.controller");
+const leaderboardController = require("./leaderboard/leaderboard.controller");
 const app = express();
 const cors = require("cors");
 const path = require("path");
@@ -26,7 +27,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 30000, // 30 seconds for testing
+      maxAge: 3000000, // 5 mins
     },
     store,
   })
@@ -82,15 +83,56 @@ app.get("/login/:id", userController.getUser); // done returning user
 // //create user
 app.post("/create", userController.create); //done returning id and user_name
 
-app.get("/movieInfo", isAuthenticated, async (req, res, next) => {
- let data = await movieController.getAllMovies();
- res.status(200).send(data);
-}, (req, res, next) => {
-  res.status(400).send("ERROR: Not logged in");
+app.patch("/user", isAuthenticated, () => {});
+
+app.get(
+  "/movieInfo",
+  isAuthenticated,
+  async (req, res, next) => {
+    let data = await movieController.getAllMovies();
+    res.status(200).send(data);
+  },
+  (req, res, next) => {
+    res.status(400).send("ERROR: Not logged in");
+  }
+);
+
+app.get("/leaderboard", isAuthenticated, async (req, res) => {
+  let result = await leaderboardController.returnAll();
+  res.status(200).send(result);
+});
+
+app.patch("/leaderboard", isAuthenticated, async (req, res) => {
+  await leaderboardController.updateLeaderboard(req.body, req.session.user);
+  res.sendStatus(200);
+});
+
+app.post("/leaderboard", isAuthenticated, async (req, res) => {
+  await leaderboardController.addUser(req.body);
+  res.sendStatus(200);
+});
+
+app.get("/currentUser", isAuthenticated, (req, res) => {
+  res.status(200).send(JSON.stringify(req.session.user));
+});
+
+app.get("/tournaments", isAuthenticated, (req, res) => {
+
+});
+
+app.get("/tournaments/:name", isAuthenticated, (req, res) => {
+
+});
+
+app.post("/tournaments", isAuthenticated, (req, res) => {
+
+});
+
+app.patch("/tournaments:name", isAuthenticated, (req, res) => {
+
 });
 
 //serving static html for every path
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
 });
-
