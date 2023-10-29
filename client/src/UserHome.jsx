@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { Game } from "./Game";
+import Postgame from "./Postgame";
+import { useNavigate } from "react-router-dom";
 
 const UserHome = ({ user }) => {
-  const [startGame, setStartGame] = useState(false);
+  const navigate = useNavigate();
+
   const handleClick = () => {
     window.location.reload();
   };
 
-  return startGame ? (
-    <Game />
-  ) : (
+  return (
     <>
       <div>Hello, {user}</div>
       <button
         onClick={() => {
-          setStartGame(true);
+          navigate("/play");
         }}
       >
         Play
