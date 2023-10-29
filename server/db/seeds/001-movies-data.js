@@ -1949,16 +1949,6 @@ exports.seed = async function (knex) {
       year: 2020,
     },
     {
-      title: "Sound of Freedom",
-      genre: "Action",
-      language: "English",
-      overview:
-        "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
-      poster_link:
-        "https://image.tmdb.org/t/p/w600_and_h900_bestv2//qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
-      year: 2023,
-    },
-    {
       title: "Bound by Honor",
       genre: "Crime",
       language: "English",
