@@ -1,23 +1,28 @@
 import { useState } from "react";
 import { Game } from "./Game";
 import "./styles/UserHome.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserHome = ({ user }) => {
-  const [startGame, setStartGame] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
   const handleClick = () => {
-    window.location.reload();
+    navigate("/");
   };
 
-  return startGame ? (
-    <Game />
-  ) : (
+  useEffect(() => {
+    fetch("/currentUser")
+      .then((res) => res.json())
+      .then((data) => setCurrentUser(data));
+  }, []);
+
+  return (
     <>
-      <h1 className="title-createacc" >Boxed IN</h1>
-      <div className="box-userhome" >
-      <div className="greet-userhome" >Hello, {user}</div>
-      <button className="button-userhome"
+      <div>Hello, {currentUser}</div>
+      <button
         onClick={() => {
-          setStartGame(true);
+          navigate("/play");
         }}
       >
         Play

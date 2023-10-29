@@ -17,14 +17,14 @@ const CreateAccount = () => {
       password: passwordInput.current.value,
     };
 
-    fetch("http://localhost:5100/create", {
+    fetch("/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
     }).then((res) => {
-      res.status == 200 ? navigate("/") : console.log(res.status);
+      res.status == 200 ? navigate("/home") : console.log(res.status);
     });
   };
 

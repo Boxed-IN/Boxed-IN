@@ -7,6 +7,8 @@ import {
 import Homepage from "./Homepage";
 import CreateAccount from "./CreateAccount";
 import "./styles/App.css";
+import UserHome from "./UserHome";
+import { Game } from "./Game";
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="new" element={<CreateAccount />} />
+        <Route path="/home" element={<UserHome />} />
+        <Route path="/play" element={<Game />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

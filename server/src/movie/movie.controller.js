@@ -64,8 +64,14 @@ async function insertMovies() {
     }
 }
 
+async function getAllMovies() {
+  const result = await userModel.getAll();
+  return result;
+}
+
 
 module.exports = {
   fetchData,
-  insertMovies
+  insertMovies,
+  getAllMovies
 };
