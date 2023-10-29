@@ -113,6 +113,22 @@ app.get("/currentUser", isAuthenticated, (req, res) => {
   res.status(200).send(req.session.user);
 });
 
+app.get("/tournaments", isAuthenticated, (req, res) => {
+
+});
+
+app.get("/tournaments/:name", isAuthenticated, (req, res) => {
+
+});
+
+app.post("/tournaments", isAuthenticated, (req, res) => {
+
+});
+
+app.patch("/tournaments:name", isAuthenticated, (req, res) => {
+
+});
+
 //serving static html for every path
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
