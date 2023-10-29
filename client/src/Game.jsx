@@ -8,13 +8,15 @@ export const Game = () => {
   //const [answer, setAnswer] = useState("Grime");
   const [currentUser, setCurrentUser] = useState(null);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(180);
   const [movies, setMovies] = useState([{ poster_link: poster }]);
   const [isGameOver, setIsGameOver] = useState(false);
-  const startScale = 5;
+  const startScale = 10;
   const [scale, setScale] = useState(startScale);
 
   const answerInput = useRef("");
+  const posterRef = useRef("");
+  
 
   useEffect(() => {
     fetch("/currentUser")
@@ -37,7 +39,7 @@ export const Game = () => {
       return;
     } else {
       const timeout = setTimeout(() => {
-        setScale((prevScale) => prevScale - 1);
+        if(scale > 1) setScale((prevScale) => prevScale - 1);
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
       return () => clearTimeout(timeout);
@@ -48,6 +50,10 @@ export const Game = () => {
     handleGetPosters();
   }, []);
 
+  useEffect(() => {
+    handleSetZoom();
+  }, [scale]);
+
   async function handleGetPosters() {
     let result = await fetch("/movieInfo");
     let parsedResult = await result.json();
@@ -57,7 +63,15 @@ export const Game = () => {
 
   function handleSwapPoster() {
     answerInput.current.value = "";
+    setScale(startScale);
     setMovies(movies.slice(1));
+  }
+
+  function handleSetZoom() {
+    const ref = document.getElementsByClassName("game-poster");
+    ref[0].style.setProperty("--zoom", scale);
+    //.style.setProperty("--zoom", scale);
+   // posterRef.current.style.zoom = scale;
   }
 
   function shuffle(array) {
@@ -82,7 +96,7 @@ export const Game = () => {
     <Postgame score={score} />
   ) : (
     <>
-      <img className="game-poster" src={movies[0].poster_link} style={{transition: "transform 1000ms ease-in-out", transform: `scale(${scale})`}}></img>
+      <img className="game-poster" src={movies[0].poster_link} ></img>
       <div className="game-score" >
       <p className="score" >Score: {score} </p>
       <h1 className="timer" > Timer: {timer} </h1>
