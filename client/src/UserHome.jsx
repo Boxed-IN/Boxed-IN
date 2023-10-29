@@ -17,8 +17,11 @@ const UserHome = ({ user }) => {
 
   return (
     <>
-      <div>Hello, {currentUser}</div>
+    <h1 className="title-createacc" >Boxed IN</h1>
+      <div className="box-userhome">
+      <div className="greet-userhome" >Hello, {currentUser}</div>
       <button
+        className="button-userhome"
         onClick={() => {
           navigate("/play");
         }}
@@ -28,6 +31,7 @@ const UserHome = ({ user }) => {
       <button className="button-userhome" onClick={handleClick}>
         Logout
       </button>
+      </div>
     </>
   );
 };
