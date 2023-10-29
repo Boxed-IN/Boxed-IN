@@ -65,6 +65,7 @@ module.exports = {
 
   async login(data) {
     const user = await userModel.checkUser(data.user_name);
+    if(user[0] == undefined) return false;
     const validUser = await crypter.check(
       data.password,
       user[0].hashed_password,
