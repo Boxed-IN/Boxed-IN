@@ -39,7 +39,6 @@ module.exports = {
       }
     }
   },
-
   async create(req, res) {
     try {
       console.log(process.env.DATABASE_URL);

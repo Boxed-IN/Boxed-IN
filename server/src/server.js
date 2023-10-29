@@ -1,5 +1,6 @@
 const express = require("express");
 const userController = require("./user/user.controller");
+const movieController = require("./movie/movie.controller");
 const app = express();
 const cors = require("cors");
 const path = require("path");
@@ -78,7 +79,6 @@ app.get("/", isAuthenticated, function (req, res) {
 
 // user by id
 app.get("/login/:id", userController.getUser); // done returning user
-
 // //create user
 app.post("/create", userController.create); //done returning id and user_name
 
@@ -86,3 +86,4 @@ app.post("/create", userController.create); //done returning id and user_name
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
 });
+
