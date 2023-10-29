@@ -11,6 +11,7 @@ module.exports = {
         user: "user",
         score: "score",
       })
+      .limit(10)
       .from(leaderboard)
       .orderBy("score", "desc");
   },
