@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Homepage from "./Homepage";
+import { Game } from "./Game";
 
 const Postgame = ({ score }) => {
   const [leaderboard, setLeaderboard] = useState([]);
+  const [playAgain, setPlayAgain] = useState(false);
 
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     fetch("/leaderboard")
-  //       .then((res) => res.json())
-  //       .then((data) => setLeaderboard(data));
-  //   }, []);
+  useEffect(() => {
+    fetch("/leaderboard")
+      .then((res) => res.json())
+      .then((data) => setLeaderboard(data));
+  }, []);
 
   const handleHomeButton = () => {
     return navigate("/home");
   };
 
   const handleReplayButton = () => {
-    return navigate("/play");
+    return setPlayAgain(true);
   };
-  return (
+  return playAgain ? (
+    <Game />
+  ) : (
     <>
       <h1>Leaderboard</h1>
       <ul>
