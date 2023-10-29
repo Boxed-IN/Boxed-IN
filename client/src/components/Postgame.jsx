@@ -22,11 +22,12 @@ const Postgame = ({ score, leaderboard }) => {
       <h1 className="title">Boxed IN</h1>
       <div className="leaderboard-container">
         <h1>Leaderboard</h1>
-        <ul>
+        <ul className="scoreList">
           {leaderboard.map((user) => {
             return (
-              <li className="li">
-                {user.user}: {user.score}
+              <li className="scoreListItem">
+                <div className="user">{user.user}</div>
+                <div className="score">{user.score}</div>
               </li>
             );
           })}
