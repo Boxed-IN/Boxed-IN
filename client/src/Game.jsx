@@ -12,8 +12,9 @@ export const Game = () => {
 
     async function handleGetPosters() {
         let result = await fetch("/movieInfo");
-        console.log(result);
-        setMovies(result.body);
+        let parsedResult = await result.json();
+        console.log(parsedResult);
+        setMovies(parsedResult);
         console.log(movies);
     }
 
