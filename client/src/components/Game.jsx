@@ -6,7 +6,7 @@ import Postgame from "./Postgame";
 export const Game = () => {
   const [user, setUser] = useState(null);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(60);
   const [leaderboard, setLeaderboard] = useState([]);
   const [movies, setMovies] = useState([{}]);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -71,6 +71,11 @@ export const Game = () => {
   function handleSetZoom() {
     const ref = document.getElementsByClassName("game-poster");
     ref[0].style.setProperty("--zoom", scale);
+    if (parseInt(ref[0].style["cssText"].split(" ")[1]) === 2) {
+      setTimeout(() => {
+        handleSwapPoster();
+      }, 2000);
+    }
   }
 
   function shuffle(array) {
